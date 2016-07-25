@@ -13,7 +13,7 @@ int pos[205];
 double aorc[205];
 
 double dfs(int nn) {
-	//printf("dfs:%d\n ",nn);
+	printf("dfs:%d\n ",nn);
 	vis[nn+100]=1;
 	pos[nn+100]=++st;
 	double t=(double)(nn)/(double)(m);
@@ -41,11 +41,14 @@ double dfs(int nn) {
 		}
 		lc*=r;
 		double lval=1-lc;
-		//printf("HUAN=%lf\n",rval/lval);
-		return rval/lval;
+		printf("tmpnn=%d=HUAN=%lf\n",tmpnn,rval/lval);
+		return  (aorc[pos[nn+100]]+brt2[pos[nn+100]]*rval/lval)/r;
 	}
-	else
-		return (aorc[pos[nn+100]]+brt2[pos[nn+100]]*dfs(tmpnn))/r;
+	else{
+		double ans=(aorc[pos[nn+100]]+brt2[pos[nn+100]]*dfs(tmpnn))/r;
+		printf("ans of %d=%lf\n",nn,ans);
+		return ans;
+	}
 }
 
 
@@ -53,6 +56,7 @@ double dfs(int nn) {
 int main()
 {
 	freopen("A.in","r",stdin);
+	freopen("A.out","w",stdout);
 	int tc;
 	scanf("%d",&tc);
 	while(tc--){
